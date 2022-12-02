@@ -966,26 +966,6 @@ data:
               "uid": "${Datasource}"
             },
             "definition": "label_values(cos_fleetshard_sync_connector_state, cluster_id)",
-            "error": {
-              "config": {
-                "headers": {
-                  "X-Grafana-Org-Id": 1
-                },
-                "hideFromInspector": true,
-                "method": "GET",
-                "retry": 0,
-                "showErrorAlert": false,
-                "url": "api/datasources/133/resources/api/v1/series?match%5B%5D=cos_fleetshard_sync_connector_state&start=1669881051&end=1669967451"
-              },
-              "data": {
-                "error": "",
-                "message": "Get \"http://rhoc-token-refresher.app-sre-observability-production.svc.cluster.local/api/v1/series?match%5B%5D=cos_fleetshard_sync_connector_state&start=1669881051&end=1669967451\": dial tcp: lookup rhoc-token-refresher.app-sre-observability-production.svc.cluster.local: no such host",
-                "response": "Get \"http://rhoc-token-refresher.app-sre-observability-production.svc.cluster.local/api/v1/series?match%5B%5D=cos_fleetshard_sync_connector_state&start=1669881051&end=1669967451\": dial tcp: lookup rhoc-token-refresher.app-sre-observability-production.svc.cluster.local: no such host"
-              },
-              "message": "Get \"http://rhoc-token-refresher.app-sre-observability-production.svc.cluster.local/api/v1/series?match%5B%5D=cos_fleetshard_sync_connector_state&start=1669881051&end=1669967451\": dial tcp: lookup rhoc-token-refresher.app-sre-observability-production.svc.cluster.local: no such host",
-              "status": 500,
-              "statusText": ""
-            },
             "hide": 0,
             "includeAll": true,
             "multi": true,
