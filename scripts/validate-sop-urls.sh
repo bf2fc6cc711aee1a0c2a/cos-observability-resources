@@ -28,8 +28,6 @@ function check(){
     echo "Checking: ${SOP} Status Code: $STATUS_RESPONSE"
 		if [[ "$STATUS_RESPONSE" != "2"* ]]; then
 			BAD_SOP_LINKS[$SOP]=$STATUS_RESPONSE
-		else
-			echo "Checking: ${SOP##*/} Status Code: $STATUS_RESPONSE"
 		fi
 	done
 
