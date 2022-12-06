@@ -1,5 +1,5 @@
 export UNIT_TEST_DIR ?= $(shell pwd)/resources/prometheus/unit_tests/
-export PROMETHEUS_RULES_DIR ?= $(shell pwd)/resources/prometheus/downstream
+export PROMETHEUS_RULES_DIR ?= $(shell pwd)/resources/prometheus/downstream/
 export IMAGE ?= quay.io/prometheus/prometheus
 export DASHBOARDS_DIR ?= $(shell pwd)/resources/grafana/downstream/
 export INDEX_FILE_PATH ?= $(shell pwd)/resources/index.json
