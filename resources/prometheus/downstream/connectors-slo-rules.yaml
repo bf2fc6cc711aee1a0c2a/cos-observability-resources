@@ -57,6 +57,18 @@ spec:
             ( sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="ready"}[3d])) + sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[3d])) )
           record: slo_connector_availability_failure_rate:ratio_rate3d
 
+        - expr: |
+            sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[7d]))
+            /
+            ( sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="ready"}[7d])) + sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[7d])) )
+          record: slo_connector_availability_failure_rate:ratio_rate7d
+
+        - expr: |
+            sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[28d]))
+            /
+            ( sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="ready"}[28d])) + sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[28d])) )
+          record: slo_connector_availability_failure_rate:ratio_rate28d
+
         - alert: RHOCConnectorsAvailability5mTo1hOr30mTo6hP2BudgetBurn
           expr: |
             (
