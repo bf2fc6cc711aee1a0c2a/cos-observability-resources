@@ -109,7 +109,7 @@ spec:
         - expr: |
             sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="ready"}[7d]))
             /
-            ( 
+            (
               sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="ready"}[7d]))
               +
               ( sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[7d])) OR on() vector(0) )
@@ -124,7 +124,7 @@ spec:
             (
               sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="ready"}[28d]))
               +
-              ( sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[28d])) OR on() vector(0) ) 
+              ( sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[28d])) OR on() vector(0) )
             )
           record: slo_connector_availability_success_rate:ratio_rate28d
           labels:
@@ -133,20 +133,24 @@ spec:
         - expr: |
             clamp_min(
               (
-                ( 
-                  0.005 * 
-                  ( 
-                    sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="ready"}[28d])) 
-                    + 
-                    (sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[28d])) OR on() vector(0)) 
+                (
+                  0.005 *
+                  (
+                    sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="ready"}[28d]))
+                    +
+                    (
+                      sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[28d]))
+                      OR
+                      on() vector(0)
+                    )
                   )
-                ) 
-                - 
+                )
+                -
                 (sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[28d])) OR on() vector(0))
-              ) / 
-              ( 
+              ) /
+              (
                 0.005 *
-                ( 
+                (
                   sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="ready"}[28d]))
                   +
                   (sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[28d])) OR on() vector(0)) )
@@ -159,18 +163,18 @@ spec:
         - expr: |
             clamp_min(
               (
-                ( 
-                  0.005 * 
+                (
+                  0.005 *
                   (
                     sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="ready"}[7d]))
-                    + 
-                    (sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[7d])) OR on() vector(0)) 
+                    +
+                    (sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[7d])) OR on() vector(0))
                   )
-                ) 
+                )
                 -
                 (sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[7d])) OR on() vector(0))
-              ) / 
-              ( 
+              ) /
+              (
                 0.005 *
                 (
                   sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="ready"}[7d]))
@@ -184,13 +188,13 @@ spec:
 
         - expr: |
             clamp_min(
-              ( 
-                ( 
+              (
+                (
                   (sum by (cluster_id) (rate(application_camel_context_exchanges_total[28d])) * 0.005)
-                  - 
+                  -
                   ( sum by (cluster_id) (rate(application_camel_context_exchanges_failed_total[28d])) OR on() vector(0) )
-                ) 
-                / 
+                )
+                /
                 (sum by (cluster_id) (rate(application_camel_context_exchanges_total[28d])) * 0.005)
               )
             , 0)
@@ -200,13 +204,13 @@ spec:
 
         - expr: |
             clamp_min(
-              ( 
-                ( 
-                  (sum by (cluster_id) (rate(application_camel_context_exchanges_total[7d])) * 0.005) 
-                  - 
+              (
+                (
+                  (sum by (cluster_id) (rate(application_camel_context_exchanges_total[7d])) * 0.005)
+                  -
                   ( sum by (cluster_id) (rate(application_camel_context_exchanges_failed_total[7d])) OR on() vector(0) )
-                ) 
-                / 
+                )
+                /
                 (sum by (cluster_id) (rate(application_camel_context_exchanges_total[7d])) * 0.005)
               )
             , 0)
