@@ -153,7 +153,8 @@ spec:
                 (
                   sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="ready"}[28d]))
                   +
-                  (sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[28d])) OR on() vector(0)) )
+                  (sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[28d])) OR on() vector(0))
+                )
               )
             , 0)
           record: slo_connector_availability_remaining_error_budget:ratio_rate28d
@@ -179,7 +180,8 @@ spec:
                 (
                   sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="ready"}[7d]))
                   +
-                  (sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[7d])) OR on() vector(0)) )
+                  (sum by (cluster_id) (rate(cos_fleetshard_sync_connector_state_count_total{cos_connector_state="failed_but_ready"}[7d])) OR on() vector(0))
+                )
               )
             , 0)
           record: slo_connector_availability_remaining_error_budget:ratio_rate7d
