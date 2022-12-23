@@ -35,7 +35,7 @@ data:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "iteration": 1671544242129,
+      "iteration": 1671544242149,
       "links": [],
       "liveNow": false,
       "panels": [
@@ -172,7 +172,7 @@ data:
                 "uid": "${Datasource}"
               },
               "editorMode": "code",
-              "expr": "slo_connector_availability_success_rate:ratio_rate28d",
+              "expr": "slo_connector_availability_success_rate:ratio_rate28d{cluster_id=~\"$Cluster\"}",
               "legendFormat": "Cluster ID: {{cluster_id}}",
               "range": true,
               "refId": "A"
@@ -269,7 +269,7 @@ data:
                 "uid": "${Datasource}"
               },
               "editorMode": "code",
-              "expr": "slo_connector_availability_remaining_error_budget:ratio_rate28d",
+              "expr": "slo_connector_availability_remaining_error_budget:ratio_rate28d{cluster_id=~\"$Cluster\"}",
               "legendFormat": "Cluster ID: {{cluster_id}}",
               "range": true,
               "refId": "A"
@@ -371,7 +371,7 @@ data:
                 "uid": "${Datasource}"
               },
               "editorMode": "code",
-              "expr": "slo_connector_availability_success_rate:ratio_rate7d",
+              "expr": "slo_connector_availability_success_rate:ratio_rate7d{cluster_id=~\"$Cluster\"}",
               "legendFormat": "Cluster ID: {{cluster_id}}",
               "range": true,
               "refId": "A"
@@ -468,7 +468,7 @@ data:
                 "uid": "${Datasource}"
               },
               "editorMode": "code",
-              "expr": "slo_connector_availability_remaining_error_budget:ratio_rate7d",
+              "expr": "slo_connector_availability_remaining_error_budget:ratio_rate7d{cluster_id=~\"$Cluster\"}",
               "legendFormat": "Cluster ID: {{cluster_id}}",
               "range": true,
               "refId": "A"
@@ -613,7 +613,7 @@ data:
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "slo_connector_data_success_rate:ratio_rate28d",
+              "expr": "slo_connector_data_success_rate:ratio_rate28d{cluster_id=~\"$Cluster\"}",
               "instant": false,
               "legendFormat": "Cluster ID:{{cluster_id}}",
               "range": true,
@@ -719,7 +719,7 @@ data:
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "slo_connector_data_remaining_error_budget:ratio_rate28d",
+              "expr": "slo_connector_data_remaining_error_budget:ratio_rate28d{cluster_id=~\"$Cluster\"}",
               "instant": false,
               "legendFormat": "Cluster ID:{{cluster_id}}",
               "range": true,
@@ -825,7 +825,7 @@ data:
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "slo_connector_data_success_rate:ratio_rate7d",
+              "expr": "slo_connector_data_success_rate:ratio_rate7d{cluster_id=~\"$Cluster\"}",
               "instant": false,
               "legendFormat": "Cluster ID:{{cluster_id}}",
               "range": true,
@@ -931,7 +931,7 @@ data:
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "slo_connector_data_remaining_error_budget:ratio_rate7d",
+              "expr": "slo_connector_data_remaining_error_budget:ratio_rate7d{cluster_id=~\"$Cluster\"}",
               "instant": false,
               "legendFormat": "Cluster ID:{{cluster_id}}",
               "range": true,
@@ -965,6 +965,36 @@ data:
             "regex": "/.*rhoc.*/",
             "skipUrlSync": false,
             "type": "datasource"
+          },
+          {
+            "current": {
+              "selected": true,
+              "text": [
+                "All"
+              ],
+              "value": [
+                "$__all"
+              ]
+            },
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${Datasource}"
+            },
+            "definition": "label_values(cos_fleetshard_sync_connector_state, cluster_id)",
+            "hide": 0,
+            "includeAll": true,
+            "multi": true,
+            "name": "Cluster",
+            "options": [],
+            "query": {
+              "query": "label_values(cos_fleetshard_sync_connector_state, cluster_id)",
+              "refId": "StandardVariableQuery"
+            },
+            "refresh": 1,
+            "regex": "",
+            "skipUrlSync": false,
+            "sort": 0,
+            "type": "query"
           }
         ]
       },
