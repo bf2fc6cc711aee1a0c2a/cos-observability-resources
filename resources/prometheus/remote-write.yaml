@@ -41,6 +41,7 @@ writeRelabelConfigs:
     replacement: ${1}
     action: labelkeep
 
+
   # WHAT: Reports the current amount of Prometheus remote storage shards
   - action: replace
     regex: prometheus_remote_storage_shards$
